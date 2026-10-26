@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink-950: #020617;
+  --color-ink-900: #0f172a;
+  --color-ink-800: #1e293b;
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  background: #020617;
+}
+
+body {
+  min-height: 100vh;
+  background: #020617;
+}
+
+@layer utilities {
+  .bg-app {
+    background:
+      radial-gradient(circle at 16% 8%, rgba(56, 189, 248, 0.16), transparent 30%),
+      radial-gradient(circle at 86% 12%, rgba(16, 185, 129, 0.15), transparent 28%),
+      linear-gradient(180deg, #020617 0%, #08111f 48%, #020617 100%);
+  }
+}
+
+@layer components {
+  .panel {
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(15, 23, 42, 0.72);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(14px);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5eead4;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #5eead4;
+  box-shadow: 0 0 0 2px rgba(94, 234, 212, 0.18);
+}
