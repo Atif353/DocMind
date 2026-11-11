@@ -1,6 +1,20 @@
-# DocMind
+# DocMind AI
 
-Private document Q&A with Retrieval-Augmented Generation. Upload PDFs, ask questions, and get streamed answers with page-level citations.
+**Ask questions across PDFs and inspect the sources behind each answer.**
+
+**Stack:** Python · FastAPI · Gemini SDK · FAISS · Express · React · Supabase PostgreSQL
+
+[Portfolio presentation](https://atifmubashar.vercel.app/work) · [Author](https://atifmubashar.vercel.app/) · [Contact](mailto:atifmubashar353@gmail.com)
+
+## Engineering highlights
+
+- Semantic retrieval uses Gemini embeddings and FAISS with MMR selection, combined with keyword matching.
+- Retrieval is scoped to authorized document IDs. The answer stream includes page-level source metadata.
+- A PostgreSQL-backed ingestion queue uses leases and retries; optional Brave search can supplement missing document context.
+- This version implements RAG directly with the Google Gemini SDK.
+- [Retrieval implementation](ai-engine/app/services/vector_store.py) · [Answering pipeline](ai-engine/app/services/answering.py) · [Ingestion worker](backend/src/services/documentWorker.js)
+
+Access-scoped document Q&A with Retrieval-Augmented Generation. Upload PDFs, ask questions, and get streamed answers with page-level citations.
 
 ## Features
 
@@ -68,3 +82,9 @@ cd frontend && npm run build
 ## Notes
 
 FAISS is single-writer, so run one AI-engine replica per vector volume. For horizontal scaling, swap in a shared vector database.
+
+## Scope and verification
+
+Personal portfolio project. The faithfulness score is a model-generated heuristic, not a guarantee that an answer is correct. Optional web fallback sends the question to Brave Search when configured.
+
+The repository includes backend auth/utility tests and AI-engine text/security tests. The frontend command above verifies the build; it is not an end-to-end test suite.
